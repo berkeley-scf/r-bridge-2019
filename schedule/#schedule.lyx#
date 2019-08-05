@@ -124,7 +124,7 @@ Unless otherwise noted, modules are about 75 minutes long: 45 minutes for
 \end_layout
 
 \begin_layout Itemize
-Day 1 morning (8:30-12:15) (learning R)
+Monday – Intro to R
 \begin_inset Separator latexpar
 \end_inset
 
@@ -133,18 +133,7 @@ Day 1 morning (8:30-12:15) (learning R)
 
 \begin_deeper
 \begin_layout Itemize
-Module 0: Introduction, what is R, starting R, why R? why not R? (Chris)
- (15 minutes)
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-scripting, text files, notes
-\end_layout
-
-\end_inset
-
-
+Module 0: Introduction, what is R, starting R, why R? why not R?
 \end_layout
 
 \begin_layout Itemize
@@ -186,35 +175,11 @@ basic graphics
 
 \begin_layout Itemize
 breakout problems 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-[perhaps a basic plotting problem that involves some data manipulation]
-\end_layout
-
-\end_inset
-
- 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-graphics problem, manipulating data frame
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-Break (15 minutes)
-\end_layout
-
-\begin_layout Itemize
-Module 2: Managing R and your analyses (Chris) (45 minutes)
+Module 2: Managing R and your analyses 
 \begin_inset Separator latexpar
 \end_inset
 
@@ -240,24 +205,6 @@ Git, Github and version control
 
 \begin_layout Itemize
 getting R help online 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-R help, Stack Overflow, Google 
-\begin_inset Quotes eld
-\end_inset
-
-in R
-\begin_inset Quotes erd
-\end_inset
-
-, reproducible examples, sessionInfo() [could shift to last session Sunday]
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Itemize
@@ -265,8 +212,14 @@ breakout problems
 \end_layout
 
 \end_deeper
+\end_deeper
 \begin_layout Itemize
-Module 3: Working with data (Chris) (45 minutes)
+Tuesday – Working with data
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Module 3: Working with data
 \begin_inset Separator latexpar
 \end_inset
 
@@ -288,53 +241,37 @@ subsetting
 
 \begin_layout Itemize
 strings
-\end_layout
-
-\end_deeper
-\end_deeper
-\begin_layout Itemize
-Lunch (on your own) (12:00-1:30)
-\end_layout
-
-\begin_layout Itemize
-Day 1 afternoon (1:30-5:00) (data processing and manipulation)
 \begin_inset Separator latexpar
 \end_inset
 
 
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
-Module 3: Working with data, continued (Chris) (40 minutes)
-\begin_inset Separator latexpar
-\end_inset
-
-
+dates and times
 \end_layout
 
-\begin_deeper
+\begin_layout Itemize
+simulation, sample()
+\end_layout
+
 \begin_layout Itemize
 more on reading data
 \end_layout
 
 \begin_layout Itemize
 breakout problems
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-+ 5 minute quick break
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_deeper
+\end_deeper
 \begin_layout Itemize
-Module 4: Calculations (Chris)
+Wednesday - Programming
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Module 4: Calculations 
 \begin_inset Separator latexpar
 \end_inset
 
@@ -380,11 +317,7 @@ status open
 
 \end_deeper
 \begin_layout Itemize
-Break (15 minutes)
-\end_layout
-
-\begin_layout Itemize
-Module 5: Programming in R (Chris)
+Module 5: Programming in R 
 \begin_inset Separator latexpar
 \end_inset
 
@@ -421,12 +354,12 @@ status open
 \end_deeper
 \end_deeper
 \begin_layout Itemize
-Day 2 morning (9-12:45) (programming and data analysis)
+Thursday – The tidyverse and analyses
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-Module 6: Data manipulation using the tidyverse (Nima)
+Module 6: Data manipulation using the tidyverse
 \begin_inset Separator latexpar
 \end_inset
 
@@ -449,11 +382,7 @@ breakout problems/homework
 
 \end_deeper
 \begin_layout Itemize
-Break (15 minutes)
-\end_layout
-
-\begin_layout Itemize
-Module 7: Data analysis (Chris) 
+Module 7: Data analysis 
 \begin_inset Separator latexpar
 \end_inset
 
@@ -484,41 +413,18 @@ optimization
 \end_layout
 
 \begin_layout Itemize
-simulation, sample()
-\end_layout
-
-\begin_layout Itemize
-dates and times
-\end_layout
-
-\begin_layout Itemize
 breakout problems 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-[a small simulation study perhaps]
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_deeper
+\end_deeper
 \begin_layout Itemize
-Module 8: Graphics (Nima)
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-http://teachpress.environmentalinformatics-marburg.de/2013/07/creating-publication
--quality-graphs-in-r-7/
+Friday - Graphics and wrap-up
 \end_layout
 
-\end_inset
-
-
+\begin_deeper
+\begin_layout Itemize
+Module 8: Graphics 
 \begin_inset Separator latexpar
 \end_inset
 
@@ -540,133 +446,6 @@ ggplot2
 
 \begin_layout Itemize
 breakout problems 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-[creating a nice lattice/ggplot2 graphic]
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\end_deeper
-\begin_layout Itemize
-Lunch (on your own) (12:45-2:00)
-\end_layout
-
-\begin_layout Itemize
-Day 2 afternoon (2:00-4:30) (more advanced topics) 
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Module 9: Workflows, coding practices, and project management
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-http://feedproxy.google.com/~r/RBloggers/~3/H67TlLIYTbQ/?utm_source=feedburner&utm
-_medium=email
-\end_layout
-
-\end_inset
-
- (Chris) (60 minutes)
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-debugging, timing, memory use
-\end_layout
-
-\begin_layout Itemize
-scripting, source(), batch jobs
-\end_layout
-
-\begin_layout Itemize
-good coding practices
-\end_layout
-
-\begin_layout Itemize
-reproducible research
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Break (fill out feedback forms) (20 minutes)
-\end_layout
-
-\begin_layout Itemize
-Module 10: Advanced topics morsels (Chris) (60 minutes)
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-object-oriented programming (S3, S4, ReferenceClasses)
-\end_layout
-
-\begin_layout Itemize
-computing on the language (using R to write and evaluate R code)
-\end_layout
-
-\begin_layout Itemize
-errors and try-catch
-\end_layout
-
-\begin_layout Itemize
-encodings
-\end_layout
-
-\begin_layout Itemize
-working with databases
-\end_layout
-
-\begin_layout Itemize
-parallel processing: foreach, parApply, RNG issues
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Module 11: Wrapping up (Chris) (15 minutes)
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-R inconsistencies and different ways to do things 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-(see Knowles slide)
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Where to learn more (campus and non-campus resources)
 \end_layout
 
 \end_deeper
