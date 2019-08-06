@@ -3,9 +3,7 @@ Materials for the R portion of the Statistics Department 2019 Summer Bridge Prog
 
 Materials for learning R for the August 2019 Statistics Summer Bridge program at UC Berkeley. See below (under the listing of files) for information about the R materials, including logistics, how to get the course content, and how to install the software you need on your laptop.
 
-## Description
-
-### Overview
+## Overview
 
 Topics will include:
 
@@ -15,8 +13,6 @@ Topics will include:
  * using the Tidyverse suite of R packages
 
 No prior experience with R or programming is expected.
-
-## Logistics - when, where, and how
 
 ## Preparing for the course - course content
 
