@@ -1,6 +1,6 @@
 % R Bootcamp, Module 6: Data manipulation with the `tidyverse`
 % August 2019, UC Berkeley
-% [Nima Hejazi](https://nimahejazi.org) (based on materials developed by Kellie Ottoboni, Rochelle Terman, and Chris Krogslund)
+% Chris Paciorek (based on materials developed by Kellie Ottoboni, Rochelle Terman, Nima Hejazi, and Chris Krogslund)
 
 
 ```{r chunksetup, include=FALSE}
@@ -509,7 +509,7 @@ head(gap_medium)
 
 # What we just told you will become obsolete...
 
-`gather` and `spread` are being replaced by `pivot_longer` and `pivot_wider`, which use ideas from the `cdata` package to make reshaping easier to think about. In a future bootcamp, we'll migrate to those functions...
+`gather` and `spread` are being replaced by `pivot_longer` and `pivot_wider`, which use ideas from the `cdata` package to make reshaping easier to think about. 
 
 # Extra Resources
 

@@ -1,6 +1,6 @@
 #! /usr/bin/Rscript
 # usage:
-# ./make_slides module0_induction
+# ./make_slides module0_introduction
 # ./make_slides module1_basics
 # etc.
 

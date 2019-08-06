@@ -1,6 +1,6 @@
 % R Bootcamp, Module 8: Graphics
 % August 2019, UC Berkeley
-% Dana Seidel (built off of material by Kellie Ottoboni and Chris Krogslund)
+% Chris Paciorek (built off of material by Kellie Ottoboni and Chris Krogslund)
 
 ```{r chunksetup, include=FALSE}
 # include any code here you don't want to show up in the document,
@@ -16,9 +16,8 @@ gap <- read.csv(file.path('..', 'data', 'gapminder-FiveYearData.csv'), stringsAs
 
 # By way of introduction...
 
-* 3 main facilities for producing graphics in R: **base**, **`ggplot2`**, and **`lattice`**
-* In practice, these facilities are grouped into two camps: "basic" and "advanced"
-* A better formulation: quick/dirty v. involved/fancy
+* Three main toolkits for producing graphics in R: **base**, **`ggplot2`**, and **`lattice`**
+* In practice, these are grouped into two camps: "basic" and "advanced"
 
 And here's some motivation - we can produce a plot like [this](gapminder.pdf) with a few lines of code.
 

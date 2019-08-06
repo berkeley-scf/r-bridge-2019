@@ -1,4 +1,4 @@
-% R bootcamp, Module 4: Calculations
+% Summer Bridge R, Module 4: Calculations
 % August 2019, UC Berkeley
 % Chris Paciorek
 
@@ -304,7 +304,7 @@ gm_ord <- gap[ord, ]
 head(gm_ord)
 ```
 
-You could of course write your own *sort* function that uses `order()`. More in Module 6.
+You could of course write your own *sort* function that uses `order()`. More in Module 5. And in Module 6 we'll see how to do it the "tidyverse" way.
 
 # Merging Data
 

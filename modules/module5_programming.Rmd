@@ -1,6 +1,6 @@
-% R bootcamp, Module 5: Programming
+% Summer Bridge R, Module 5: Programming
 % August 2019, UC Berkeley
-% Chris Paciorek, with contributions from [Nima Hejazi](http://nimahejazi.org)
+% Chris Paciorek
 
 ```{r chunksetup, include=FALSE}
 # include any code here you don't want to show up in the document,
@@ -158,52 +158,6 @@ for (i in seq_along(continents)) {
 }
 ```
 
-
-# Flow control: `next` and `break` statements
-
-`next` skips the current evaluation of the loop statements:
-
-```{r, next}
-continents <- unique(gap2007$continent)
-continents[2] <- "Oceania"; continents[5] <- "Europe"  # reorder to illustrate points below
-continents
-out <- list(); length(out) <- length(continents); names(out) <- continents
-
-for (i in seq_along(continents)) {
-     # equivalently: for(i in 1:length(continents))
-     sub <- subset(gap2007, gap2007$continent == continents[i])
-     if(sum(!is.na(sub$lifeExp)) > 2) { # don't regress if <= 2 obs
-     # fit regression
-       out[[i]] <- lm(lifeExp ~ log(gdpPercap), data = sub)
-     } else {
-       next
-     }
-}
-cat("We got to iteration ", i, " of ", length(continents), " items.\n", sep = "")
-out[['Oceania']]
-```
-
-`break` immediately ends loop evaluation:
-
-```{r, break}
-out <- list(); length(out) <- length(continents); names(out) <- continents
-
-for (i in seq_along(continents)) {
-     # equivalently: for(i in 1:length(continents))
-     sub <- subset(gap2007, gap2007$continent == continents[i])
-     if(sum(!is.na(sub$lifeExp)) > 2) { # don't regress if <= 2 obs
-     # fit regression
-       out[[i]] <- lm(lifeExp ~ log(gdpPercap), data = sub)
-     } else {
-       break
-     }
-}
-
-cat("We got to iteration ", i, " of ", length(continents), " items.\n", sep = "")
-```
-
-Effective use of `next` and `break` can make your `for` (and other) loops both
-more robust and efficient (e.g., by skipping cases where computations may fail).
 
 # Functions
 
@@ -430,112 +384,6 @@ square <- function(x) x^2
 class(square)
 ```
 
-# Modern Functional Programming in R (Advanced)
-
-Now that we've taken an extensive look at `for` loops and programming with
-functions, we can move on from base R to look at more modern and powerful tools
-for programming provided by [`purrr`](http://purrr.tidyverse.org/), a core
-package in the [`tidyverse`](http://www.tidyverse.org/), a set of modern tools
-for "doing data science" in R. `purrr` provides facilities to manipulate data
-sets using functions in a "tidy" manner. Using `purrr` requires familiarity with
-several other core packages of the `tidyverse`, most notably `dplyr` and
-`magrittr`. We won't have time to cover details of how to use `purrr` here, but
-we highly recommend you look into these packages as you continuing exploring R.
-
-```{r tidyverse}
-library(dplyr)
-library(purrr)
-```
-
-We'll leave you with a simple example of how to use `purrr` to deal with a task
-we already looked at with `for` loops. In fact, we'll return to the logistic
-regression exercise that we started with.
-
-### A simple example
-
-Recall that we have been fitting regression models for each year. To fit our models across each
-of the years separately, we'll first need to put our data in "tidy"
-format. It's _really easy_ with some helpful verbs from `dplyr`...
-
-```{r tidy-data}
-# let's clean up the data set first
-gm_tidy <- gap %>%
-  split(.$year)
-```
-
-Now, we can fit our regression models across each of the years
-using `purrr`'s `map`:
-
-```{r glms-error}
-gm_lms <- gm_tidy %>%
-  map(~lm(lifeExp ~ log(gdpPercap), data = .))
-```
-
-What about protecting ourselves against situations where there wasn't
-enough variation in the outcome variable (fewer than two non-missing observations in a year).
-(It doesn't happen here but can easily happen in other situations.)
-
-So, can `purrr` handle this? *Yes* - in fact, it's really easy. We can use a
-verb called `safely` to separate situations where the GLM succeeds from those
-where it doesn't. Let's try it out
-
-```{r glms-safely}
-gm_lms <- gm_tidy %>%
-  map(safely(~lm(lifeExp ~ log(gdpPercap), data = .)))
-```
-
-_Remark:_ What we accomplish here with `purrr::map` is also easily done using
-tools from base R. In fact, using `lapply`, we can evaluate the very same `lm`
-formula with our `gap` dataset, albeit without the extra goodies offered by
-the pipe (aka `%>%`) syntax and the `safely` convenience, afforded by `magrittr`
-and `purrr`, respectively.
-
-Ok. Now, we'll look at the results for one destination, just to get a feel for
-the output
-
-```{r glms-purrr-eg}
-gm_lms$`2007`
-```
-
-Now that we've seen what we can do with `purrr`, it's important to compare this
-modern approach to what is offered in base R. (It's very important to understand
-and be comfortable with using tools from base R before adopting those that are
-offered as part of the `tidyverse`.) To that end, here are some points of
-comparison:
-
-* Is `purrr::map` really different from `lapply`, `sapply`, `vapply`?
-  * `purrr` is:
-    * Consistent in the type of object returned
-    * contains many useful shortcuts and convenience functions (e.g., `safely`)
-    * Syntax accommodates more complicated iteration schemes.
-  * [l/s/v]`apply`:
-    * The type of object returned is _not_ always consistent
-    * Has fewer dependencies (implented in base R rather than `tidyverse`)
-     * Syntax can be unwieldy for more complex use-cases.
-
-For a full comparison of `purrr` versus base R, consider checking out [this
-quite thorough
-tutorial](https://jennybc.github.io/purrr-tutorial/bk01_base-functions.html) by
-Jenny Bryan.
-
-### Onwards: Readings and References
-
-* A great reference for learning both basic and advanced concepts in using the R
-  language for data analysis is the book _R for Data Science_, by Garrett
-  Grolemund and Hadley Wickham. An online version is freely available and may be
-  accessed [here](http://r4ds.had.co.nz/). In particular, [chapter 21
-  ("Iteration")](http://r4ds.had.co.nz/iteration.html) is a great review of much
-  of what we have covered in this module.
-
-* [Here](http://purrr.tidyverse.org/) you can explore the documentation website
-  for the `purrr` package. It includes details about functionality we did not
-  have time to discuss and many useful examples that you can use to go further
-  with `purrr`.
-
-* [Here](http://www.tidyverse.org/) you can browse the `tidyverse` documentation
-  website. It includes an introduction to the core packages, the philosophy of
-  this ecosystem of packages, and much more.
-
 # Breakout
 
 ### Basics
@@ -556,19 +404,28 @@ and return an error if not. (See the help information for `stop()`.)
 functions. Use `invisible()` in your function from just above or in the
 `colSort()` function.
 
+5) Consider the code where we used `sample()`.  Initialize a storage vector of 500 zeroes. Set up a bootstrap using a for loop, with 500 bootstrap datasets. Here are the steps within each iteration:
+
+  - resample with replacement a new dataset of the same size as the actual dataset
+  - assign the value of the mean of the delay for the bootstrap dataset into the storage vector
+  - repeat
+
+Now plot a histogram of the 500 values - this is an estimate of the sampling distribution of the sample mean. 
+
+
 ### Advanced
 
-5) Extend the `colSort()` function to handle an arbitrary number of columns on
+6) Extend the `colSort()` function to handle an arbitrary number of columns on
 which to do the sorting. You may need to modify the functionality a bit to use
 full vectors for the sorting rather than column names.
 
-6) Extend the `colSort()` function so that it can take either numeric indices or
+7) Extend the `colSort()` function so that it can take either numeric indices or
 character strings indicating columns of the input data or take entire vectors to
 use in the sorting of the input data. If information specifying columns is
 given, make sure your function carefully checks that the input refers to
 legitimate columns and returns an error or warning (see `warning()`) if not.
 
-7) Explore scoping in the following code. Explain why the result is 11 and not 3. Note that `funGenerator()` returns a function as the return object,
+8) Explore scoping in the following code. Explain why the result is 11 and not 3. Note that `funGenerator()` returns a function as the return object,
 consistent with the idea that functions are objects in R. This is an example of
 what is called a *closure* in R. Basically, the function contains object(s)
 enclosed with and accessible to the function.
@@ -585,3 +442,7 @@ x <- 2
 f <- funGenerator()
 f(1)
 ```
+
+9) Suppose you wanted to do 10-fold cross-validation for some sort of regression model fit to the *gap* dataset. Write some R code that produces a field in the dataset that indicates which fold each observation is in. Ensure each of the folds has an equal (or as nearly equal as possible if the number of observations is not divisible by 10) number of observations. Hint: consider the *times* argument to the `rep()` function. (If you're not familiar with 10-fold cross-validation, it requires one to divide the dataset into 10 subsets of approximately equal size.)
+
+10) Write some code to demonstrate the central limit theorem. Generate many different replicates of samples of size `n` from a skewed or discrete distribution and show that if `n` is big enough, the distribution of the means (of each sample of size `n`) looks approximately normal in a histogram. Do it without any looping (using techniques from earlier modules)! I.e., I want you to show that if you have a large number (say 10,000) of means, each mean being the mean of `n` values from a distribution, the distribution of the means looks approximately normal if `n` is sufficiently big.

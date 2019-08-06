@@ -1,4 +1,4 @@
-% R bootcamp, Module 2: Managing R and R resources
+% Summer Bridge R, Module 2: Managing R and R resources
 % August 2019, UC Berkeley
 % Chris Paciorek
 
@@ -105,16 +105,16 @@ If you're on a network and are not the administrator of the machine, you may nee
 install.packages('fields', lib = file.path('~', 'R'))
 ```
 
-If you're using R directly installed on your laptop (i.e., most of you), now (or at the break) would be a good point to install the various packages we need for the bootcamp, which can be done easily with the following command:
+If you're using R directly installed on your laptop (i.e., most of you), now (or at the break) would be a good point to install the various packages we need for the R part of the Bridge, which can be done easily with the following command:
 
 ```{r eval=FALSE}
-install.packages(c('chron','colorspace','codetools', 'DBI','devtools',
-                   'dichromat','digest','doParallel', 'dplyr', 'fields',
-                   'foreach','ggplot2','gridExtra','gtable','inline',
-                   'iterators','knitr','labeling','lattice','lme4',
-                   'mapproj','maps','munsell','proftools','proto','purrr',
-                   'rbenchmark','RColorBrewer','Rcpp','reshape2','rJava',
-                   'RSQLite', 'scales','spam','stringr','tidyr','xlsx',
+install.packages(c('chron','colorspace','codetools', 'devtools',
+                   'dichromat','digest','dplyr', 'fields',
+                   'ggplot2','gridExtra','gtable','inline',
+                   'iterators','knitr','labeling','lattice',
+                   'mapproj','maps','munsell','proftools','proto',
+                   'rbenchmark','RColorBrewer','reshape2',
+                   'scales','spam','stringr','tidyr','xlsx',
                    'xlsxjars','xtable'))
 ```
 
@@ -196,21 +196,27 @@ To read and write from R, you need to have a firm grasp of where in the computer
 ```{r, eval=FALSE}
 getwd()  # what directory will R look in?
 # Linux/Mac specific
-setwd('~/Desktop/r-bootcamp-winter-2019') # change the working directory
+setwd('~/Desktop/r-bridge-2019') # change the working directory
 setwd('/Users/paciorek/Desktop') # absolute path
 getwd()
-setwd('r-bootcamp-winter-2019/modules') # relative path
+setwd('r-R part of the Bridge-winter-2019/modules') # relative path
 setwd('../tmp') # relative path, up and back down the tree
 
 # Windows - use either \\ or / to indicate directories
-# setwd('C:\\Users\\Your_username\\Desktop\\r-bootcamp-winter-2019')
-# setwd('..\\r-bootcamp-winter-2019')
+# setwd('C:\\Users\\Your_username\\Desktop\\r-bridge-2019')
+# setwd('..\\r-R part of the Bridge-winter-2019')
 
 # platform-agnostic
-setwd(file.path('~', 'Desktop', 'r-bootcamp-winter-2019', 'modules')) # change the working directory
-setwd(file.path('/', 'Users', 'paciorek', 'Desktop', 'r-bootcamp-winter-2019', 'modules')) # absolute path
+
+# change the working directory
+setwd(file.path('~', 'Desktop', 'r-bridge-2019', 'modules'))
+
+# absolute path
+setwd(file.path('/', 'Users', 'paciorek', 'Desktop', 'r-bridge-2019', 'modules')) 
 getwd()
-setwd(file.path('..', 'data')) # relative path
+
+# relative path
+setwd(file.path('..', 'data')) 
 ```
 Many errors and much confusion result from you and R not being on the same page in terms of where in the directory structure you are.
 
@@ -271,53 +277,6 @@ print(xtable(table(gap$year, gap$continent)), type = "html")
 ```
 
 Recall our discussion of the `summary()` function used on either a vector or a regression object. What do you think is going on with call to `print()` above? 
-
-# Version control
-
-### Overview
-
-At a basic level, a simple principle is to have version numbers for all your work: code, datasets, manuscripts. Whenever you make a change to a dataset, increment the version number. For code and manuscripts, increment when you make substantial changes or have obvious breakpoints in your workflow. 
-
-However, this is a hassle to do manually. Instead of manually trying to keep track of what changes you've made to code, data, documents, you use software to help you manage the process. This has several benefits:
-
-* easily allowing you to go back to earlier versions
-* allowing you to have multiple versions you can switch between
-* allowing you to share work easily without worrying about conflicts
-* providing built-in backup
-
-
-### Git and Github
-
-Git is a popular tool for version control. Git is based around the notion of a repository, which is basically a version-controlled project directory. Many people use it with the Github or Bitbucket online hosting services for repositories.
-
-In the introductory material, we've already seen how to get a copy of a Github repository on your local machine. 
-
-As you're gathering by now, I've used Git and Github to manage all the content for this workshop.
-
-### Making changes to a repository
-
-We'll go through a short example of making changes to the r-bootcamp-winter-2019 repository. In this case you don't have permission to make changes so you'll just have to follow along as I do it. However, you could start your own repository and then you'd be able to do similar things.
-
-Note that there are [graphical interfaces to Git](https://git-scm.com/downloads/guis) that you might want to check out, but here I'm just going to do it from the command line on my Mac.
-
-The basic notion we need is a *commit*. As we make changes to our files, we want to commit those changes to the repository regularly. A *commit* is a set of changes recorded with Git. We will often then *push* those changes to a remote copy of the repository, such as on Github.
-
-Here's a basic workflow:
-
-1. Add a file to, or make changes to a file in, a repository
-2. Commit the changes
-3. Push the changes to the remote version of the repository
-
-Here's how this would look from the command line (this won't look right in the slides version of the HTML):
-```{r engine='bash', eval=FALSE}
-git add myfile
-# make changes to mycode.R
-git commit -am'added myfile and fixed bug in mycode.R'
-git push
-```
-
-The changes are then available to anyone to *pull* from the remote repository, a using `git pull` or graphical interfaces, such as using RStudio's tools to pull the changes to your machine, discussed in the Github slide in module 0.
-
 
 # Getting R help online
 

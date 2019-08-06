@@ -1,4 +1,4 @@
-% R bootcamp, Module 3: Working with objects and data
+% Summer Bridge R, Module 3: Working with objects and data
 % August 2019, UC Berkeley
 % Chris Paciorek
 
@@ -330,7 +330,7 @@ nchar(chars)
 paste("bill", "clinton", sep = " ")  # paste together a set of strings
 paste(chars, collapse = ' ')  # paste together things from a vector
 
-strsplit("This is the R bootcamp", split = " ")
+strsplit("This is the Summer Bridge R", split = " ")
 
 countries <- as.character(gap2007$country)
 substring(countries, 1, 3)
@@ -354,6 +354,124 @@ Some of you may be familiar with using *regular expressions*, which is functiona
 R has a full set of regular expression capabilities available through the *grep()*, *gregexpr()*, and *gsub()* functions (among others - many R functions will work with regular expressions). A particularly nice way to make use of this functionality is to use the *stringr* package, which is more user-friendly than directly using the core R functions.
 
 You can basically do any regular expression/string manipulations in R, though the syntax may be a bit clunky at times.
+
+# Dates
+- R has built-in ways to handle dates (don't reinvent the wheel!) 
+
+```{r dates}
+date1 <- as.Date("03-01-2011", format = "%m-%d-%Y")
+date2 <- as.Date("03/02/11", format = "%m/%d/%y")
+date3 <- as.Date("07-May-11", format = "%d-%b-%y")
+
+date1; date2
+class(date1)
+dates <- c(date1, date2, date3)
+weekdays(dates)
+dates + 30
+date3 - date2
+unclass(dates)
+```
+- The origin date in R is January 1, 1970
+
+
+# Time too!
+
+```{r}
+library(chron)
+d1 <- chron("12/25/2004", "10:37:59") 
+# default format of m/d/Y and h:m:s
+d2 <- chron("12/26/2004", "11:37:59")
+
+class(d1)
+d1
+d1 + 33
+d2 - d1
+d1 + d2
+```
+
+There's lots more packages/functionality for dates/times: see *lubridate* and `?DateTimeClasses`
+
+# Distributions
+
+Since R was developed by statisticians, it handles distributions and simulation seamlessly.
+
+All commonly-used distributions have functions in R. Each distribution has a family of functions: 
+
+* d - probability density/mass function, e.g. `dnorm()`
+* r - generate a random value, e.g., `rnorm()`
+* p - cumulative distribution function, e.g., `pnorm()`
+* q - quantile function (inverse CDF), e.g., `qnorm()`
+
+Some of the distributions include the following (in the form of their random number generator function): `rnorm()`, `runif()`, `rbinom()`, `rpois()`, `rbeta()`, `rgamma()`, `rt()`, `rchisq()`.
+
+# Distributions in action
+
+```{r, fig.cap = ""}
+pnorm(1.96)
+qnorm(.975)
+dbinom(0:10, size = 10, prob = 0.3)
+dnorm(5)
+dt(5, df = 1)
+
+x <- seq(-5, 5, length = 100)
+plot(x, dnorm(x), type = 'l')
+lines(x, dt(x, df = 1), col = 'red')
+```
+
+```{r, fig.cap = ""}
+rmultinom(1, 100, prob = c(.1, .1, .2, .3, .25, .05)) 
+
+x <- seq(0, 10, length = 100)
+plot(x, dchisq(x, df = 1), type = 'l')
+lines(x, dchisq(x, df = 2), col = 'red')
+```
+
+# Other types of simulation and sampling
+
+We can draw a sample with or without replacement.
+
+```{r}
+sample(1:nrow(gap), 20, replace = FALSE)
+```
+
+Here's an example of some code that would be part of coding up a bootstrap. As I mentioned previously, this would be a weird dataset to do formal statistical inference on given it includes most of the countries in the world, though one could think about fitting models for the variation over time, treating short-term fluctuations as random.
+
+```{r}
+# actual mean
+mean(gap$lifeExp, na.rm = TRUE)
+# here's a bootstrap sample:
+smp <- sample(seq_len(nrow(gap)), replace = TRUE) 
+mean(gap$lifeExp[smp], na.rm = TRUE)
+```
+
+It's a good idea to use `seq_along()` and `seq_len()` and not syntax like `1:length(gap)` in `sample()` because the outcome of `length()` might in some cases be unexpected (e.g., if you're taking subsets of a dataset). Similar reasoning holds when setting up for loops: e.g., 
+
+```{r eval=FALSE}
+for(i in seq_len(nrow(gap))) {
+# blah
+}
+```
+
+# The Random Seed
+
+A few key facts about generating random numbers
+
+* Random number generation is based on generating uniformly between 0 and 1 and then transforming to the kind of random number of interest: normal, categorical, etc.
+* Random numbers on a computer are *pseudo-random*; they are generated deterministically from a very, very, very long sequence that repeats
+* The *seed* determines where you are in that sequence
+
+To replicate any work involving random numbers, make sure to set the seed first.
+
+```{r}
+set.seed(1)
+vals <- sample(1:nrow(gap), 10)
+vals
+vals <- sample(1:nrow(gap), 10)
+vals
+set.seed(1)
+vals <- sample(1:nrow(gap), 10)
+vals
+```
 
 # More details on reading data into R
 
@@ -411,20 +529,27 @@ The *read.table()* family of functions just skims the surface of things...
 
 4) Set all of the gdpPercap values greater than 50000 to NA. You should probably first copy the `gap` object and work on the copy so that the dataset is unchanged (or just read the data into R again afterwards to get a clean copy).
 
-5) Consider the first row of the gapminder dataset, which has Afghanistan for 1952. How do I create a string "Afghanistan-1952" using `gap$country[1]` and `gap$year[1]`? 
+5) Consider the first row of the gapminder dataset, which has Afghanistan for 1952. How do I create a string "Afghanistan-1952" using `gap$country[1]` and `gap$year[1]`?
+
+6) Generate 100 random Poisson values with a population mean of 5. How close is the mean of those 100 values to the value of 5?
+
+7) What is the 95th percentile of a chi-square distribution with 1 degree of freedom?
+
+8) What's the probability of getting a value greater than 5 if you draw from a standard normal distribution? What about a t distribution with 1 degree of freedom?
+
 
 ### Using the ideas
 
-6) Create a character string using `paste()` that tells the user how many rows there are in the data frame - do this programmatically such that it would work for any data frame regardless of how many rows it has. The result should look like this: "There are 1704 rows in the dataset"
+9) Create a character string using `paste()` that tells the user how many rows there are in the data frame - do this programmatically such that it would work for any data frame regardless of how many rows it has. The result should look like this: "There are 1704 rows in the dataset"
 
-7) If you didn't do it this way already, extract the last row from the gapminder dataset without typing the number '1704'.
+10) If you didn't do it this way already, extract the last row from the gapminder dataset without typing the number '1704'.
 
-8) Create a boolean vector indicating if the life expectancy is greater than 75 and the gdpPercap is less than 10000 and calculate the proportion of all the records these represent.
+11) Create a boolean vector indicating if the life expectancy is greater than 75 and the gdpPercap is less than 10000 and calculate the proportion of all the records these represent.
 
-9) Use that vector to create a new data frame that is a subset of the original data frame.
+12) Use that vector to create a new data frame that is a subset of the original data frame.
 
-10) Consider the attributes of the gapminder dataset. What kind of R object is the set of attributes?
+13) Consider the attributes of the gapminder dataset. What kind of R object is the set of attributes?
 
 ### Advanced
 
-11) Create row names for the data frame based on concatenating the Continent, Country, and Year fields.
+14) Create row names for the data frame based on concatenating the Continent, Country, and Year fields.

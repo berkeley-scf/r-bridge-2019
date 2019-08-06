@@ -1,5 +1,5 @@
-% R bootcamp, Breakout Solutions
-% January 2019, UC Berkeley
+% Summer Bridge R, Breakout Solutions
+% August 2019, UC Berkeley
 % Chris Paciorek
 
 ```{r chunksetup, include=FALSE, cache=TRUE} 
@@ -156,21 +156,35 @@ gap2$gdpPercap[ gap2$gdpPercap > 50000 ] <- NA
 paste(gap$country[1], gap$year[1], sep = "-")
 ```
 
-```{r, using_the_ideas3}
 ## 6 ##
-paste("There are ", nrow(gap), " rows in the dataset.", sep = "")
+popMean <- 5
+x <- rpois(100, popMean)
+mean(x) - popMean
 
 ## 7 ##
-gap[ nrow(gap), ]
+qchisq(0.95, 1)
 
 ## 8 ##
+1 - pnorm(5)  # pnorm(5, upper.tail = TRUE)
+1 - pt(5, df = 1)
+```
+
+
+```{r, using_the_ideas3}
+## 9 ##
+paste("There are ", nrow(gap), " rows in the dataset.", sep = "")
+
+## 10 ##
+gap[ nrow(gap), ]
+
+## 11 ##
 economical <- gap$lifeExp > 75 & gap$gdpPercap < 10000
 mean(economical)   # sum(economical) / length(economical)
 
-## 9 ##
+## 12 ##
 sub <- gap[ economical , ]
 
-## 10 ##
+## 13 ##
 attributes(gap)
 names(attributes(gap))
 class(attributes(gap))
@@ -178,7 +192,7 @@ class(attributes(gap))
 
 ```{r, advanced3}
 
-## 11 ##
+## 14 ##
 head(gap)
 nm <- paste(gap$continent, gap$country, gap$year, sep = "-")
 attributes(gap)$row.names <- nm
@@ -298,15 +312,33 @@ colSort <- function(data, col1, col2) {
 }
 ```
 
-```{r, advanced6}
 ## 5 ##
+nBoot <- 500
+vals <- rep(0, nBoot)
+
+for(i in seq_len(nBoot)) { 
+      smp <- sample(seq_len(nrow(gap)), replace = TRUE) 
+      vals[i] <- mean(gap$lifeExp[smp], na.rm = TRUE)
+}
+hist(vals)
+
+## bootstrap based standard error (s.d. of sampling distribution)
+se_boot <- sd(vals)
+
+## standard error using usual sigma/sqrt(n) calculation
+n <- sum(!is.na(gap$lifeExp))
+se_norm <- sd(gap$lifeExp, na.rm = TRUE) / sqrt(n)
+
+
+```{r, advanced6}
+## 6 ##
 colSort <- function(data, ...) {
     ord <- order(..., decreasing=TRUE)
     sorted <- data[ord, ]
     invisible(sorted)
 }
 
-## 6 ##
+## 7 ##
 colSort <- function(data, ..., cols = NULL, decreasing = FALSE) {
    if(is.null(cols)) {
       ord <- order(..., decreasing = decreasing)
@@ -322,7 +354,7 @@ colSort <- function(data, ..., cols = NULL, decreasing = FALSE) {
    invisible(sorted)
 }
 
-## 7 ##
+## 8 ##
 funGenerator <- function(x) {
    x <- 10
    g <- function(y) {
@@ -337,6 +369,27 @@ f(1)
 
 ls(environment(f))
 environment(f)$x
+```
+
+## 9 ## 
+nFolds <- 10
+n <- nrow(gap)
+fold_size <- rep(round(n / nFolds), nFolds)
+fold_size[nFolds] <- n - (nFolds - 1)*fold_size[1]
+
+fold <- rep(1:nFolds, times = fold_size)
+table(fold)
+set.seed(1)
+gap$fold <- sample(fold, replace = TRUE)
+
+## 10 ##
+n <- 100
+nReps <- 10000
+data <- matrix(rpois(n*nReps, 3), ncol = nReps)
+mns <- colMeans(data)
+par(mfrow = c(1, 2))
+hist(mns)
+qqnorm(mns)
 ```
 
 # Module 6: Data manipulation using the tidyverse
@@ -370,23 +423,9 @@ gap_wider <- gap_rel_gdp %>%
 
 # 7) Module 7: Core tools
 
-```{r, basics7}
-## 1 ##
-popMean <- 5
-x <- rpois(100, popMean)
-mean(x) - popMean
-
-## 2 ##
-qchisq(0.95, 1)
-
-## 3 ##
-1 - pnorm(5)  # pnorm(5, upper.tail = TRUE)
-1 - pt(5, df = 1)
-```
-
 ```{r, using_the_ideas7}
 
-## 4 ##
+## 1 ##
 reg1 <- lm(lifeExp ~ log(gdpPercap) + log(pop) + year, 
                 data=gap)
 ## here we assume a linear relationship of gdp with year
@@ -398,24 +437,8 @@ reg2 <- lm(lifeExp ~ log(gdpPercap) + log(pop) + factor(year),
 ## we need enough data in each year to be able to reasonably estimate the average lifeExp for that year, given the other explanatory variables
 
 
-## 5 ##
-nBoot <- 500
-vals <- rep(0, nBoot)
 
-for(i in seq_len(nBoot)) { 
-      smp <- sample(seq_len(nrow(gap)), replace = TRUE) 
-      vals[i] <- mean(gap$lifeExp[smp], na.rm = TRUE)
-}
-hist(vals)
-
-## bootstrap based standard error (s.d. of sampling distribution)
-se_boot <- sd(vals)
-
-## standard error using usual sigma/sqrt(n) calculation
-n <- sum(!is.na(gap$lifeExp))
-se_norm <- sd(gap$lifeExp, na.rm = TRUE) / sqrt(n)
-
-## 6 ##
+## 2 ##
 mod <- gam(lifeExp ~ s(gdpPercap, k = 30) + s(year, k = 10), data = gap)
 plot(mod)
 summary(mod)
@@ -433,7 +456,7 @@ plot(mod)
 
 ```{r, advanced7}
 
-## 7 ##
+## 3 ##
 library(dplyr)
 gap2 <- gap %>%
   mutate(sign = ifelse(lifeExp > 60, 1, 0))
@@ -441,26 +464,6 @@ gap2 <- gap %>%
 reg_logit <- glm(sign ~ log(gdpPercap) + log(pop),
                 family = binomial(link = "logit"), data = gap2)
 
-## 8 ## 
-nFolds <- 10
-n <- nrow(gap)
-fold_size <- rep(round(n / nFolds), nFolds)
-fold_size[nFolds] <- n - (nFolds - 1)*fold_size[1]
-
-fold <- rep(1:nFolds, times = fold_size)
-table(fold)
-set.seed(1)
-gap$fold <- sample(fold, replace = TRUE)
-
-## 9 ##
-n <- 100
-nReps <- 10000
-data <- matrix(rpois(n*nReps, 3), ncol = nReps)
-mns <- colMeans(data)
-par(mfrow = c(1, 2))
-hist(mns)
-qqnorm(mns)
-```
 
 # Module 8: Graphics
 

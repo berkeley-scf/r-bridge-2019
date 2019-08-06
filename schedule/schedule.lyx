@@ -137,7 +137,7 @@ Module 0: Introduction, what is R, starting R, why R? why not R?
 \end_layout
 
 \begin_layout Itemize
-Module 1: Basics of R, with Rstudio (Chris)
+Module 1: Basics of R, with Rstudio
 \begin_inset Separator latexpar
 \end_inset
 
@@ -245,6 +245,14 @@ strings
 \end_inset
 
 
+\end_layout
+
+\begin_layout Itemize
+dates and times
+\end_layout
+
+\begin_layout Itemize
+simulation, sample()
 \end_layout
 
 \begin_layout Itemize
@@ -402,14 +410,6 @@ smoothing
 
 \begin_layout Itemize
 optimization
-\end_layout
-
-\begin_layout Itemize
-simulation, sample()
-\end_layout
-
-\begin_layout Itemize
-dates and times
 \end_layout
 
 \begin_layout Itemize

@@ -1,4 +1,4 @@
-% R bootcamp, Module 11: Next steps
+% Summer Bridge R, Module 11: Next steps
 % August 2019, UC Berkeley
 % Chris Paciorek
 
@@ -29,7 +29,7 @@ Any other things that you found frustrating and don't think are well-designed?
 
 # R tutorials, materials, and assistance
 
-Some of this material was borrowed/modified from [Jared Knowles' bootcamp](https://jaredknowles.com/r-bootcamp/)
+Some of this material was borrowed/modified from [Jared Knowles' R part of the Bridge](https://jaredknowles.com/r-R part of the Bridge/)
 
 CRAN has [manuals](https://cran.r-project.org/manuals.html) and [contributed learning material](https://cran.r-project.org/other-docs.html).
 
@@ -58,8 +58,3 @@ Specific aspects of R:
 * Murrell, Paul; R Graphics, 2nd ed. [https://www.stat.auckland.ac.nz/\~paul/RG2e](https://www.stat.auckland.ac.nz/\~paul/RG2e/)
 * Murrell, Paul; Introduction to Data Technologies. [https://www.stat.auckland.ac.nz/\~paul/ItDT/](https://www.stat.auckland.ac.nz/\~paul/ItDT/)
 
-# Thanks!  
-
-* To Evan, Nima, and Miyabi.
-* To Jon Stiles and D-Lab for sponsorship and logistical support.
-* To the Statewide Database/School of Law for hosting/co-sponsoring.

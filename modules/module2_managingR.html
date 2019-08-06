@@ -364,9 +364,9 @@ ls()
 ## [16] &quot;f.identity&quot;       &quot;f.invlogit&quot;       &quot;f.logit&quot;         
 ## [19] &quot;f.logmatern.euc&quot;  &quot;f.lonlat2eucl&quot;    &quot;f.matern.ang&quot;    
 ## [22] &quot;f.matern.ang.cov&quot; &quot;f.matern.euc&quot;     &quot;f.merge&quot;         
-## [25] &quot;format_bytes&quot;     &quot;f.rdist.earth&quot;    &quot;f.sort&quot;          
-## [28] &quot;f.sort2&quot;          &quot;f.squexp&quot;         &quot;f.trimat&quot;        
-## [31] &quot;f.vecrep&quot;         &quot;getNcdf&quot;          &quot;im&quot;              
+## [25] &quot;f.rdist.earth&quot;    &quot;f.sort&quot;           &quot;f.sort2&quot;         
+## [28] &quot;f.squexp&quot;         &quot;f.trimat&quot;         &quot;f.vecrep&quot;        
+## [31] &quot;format_bytes&quot;     &quot;getNcdf&quot;          &quot;im&quot;              
 ## [34] &quot;indices&quot;          &quot;ls_sizes&quot;         &quot;machineName&quot;     
 ## [37] &quot;makePoly&quot;         &quot;module&quot;           &quot;plot.ell&quot;        
 ## [40] &quot;pmap&quot;             &quot;pmap2&quot;            &quot;pointsInPoly&quot;    
@@ -413,15 +413,15 @@ ls()
 <pre><code class="r">install.packages(&#39;fields&#39;, lib = file.path(&#39;~&#39;, &#39;R&#39;))
 </code></pre>
 
-<p>If you&#39;re using R directly installed on your laptop (i.e., most of you), now (or at the break) would be a good point to install the various packages we need for the bootcamp, which can be done easily with the following command:</p>
+<p>If you&#39;re using R directly installed on your laptop (i.e., most of you), now (or at the break) would be a good point to install the various packages we need for the R part of the Bridge, which can be done easily with the following command:</p>
 
-<pre><code class="r">install.packages(c(&#39;chron&#39;,&#39;colorspace&#39;,&#39;codetools&#39;, &#39;DBI&#39;,&#39;devtools&#39;,
-                   &#39;dichromat&#39;,&#39;digest&#39;,&#39;doParallel&#39;, &#39;dplyr&#39;, &#39;fields&#39;,
-                   &#39;foreach&#39;,&#39;ggplot2&#39;,&#39;gridExtra&#39;,&#39;gtable&#39;,&#39;inline&#39;,
-                   &#39;iterators&#39;,&#39;knitr&#39;,&#39;labeling&#39;,&#39;lattice&#39;,&#39;lme4&#39;,
-                   &#39;mapproj&#39;,&#39;maps&#39;,&#39;munsell&#39;,&#39;proftools&#39;,&#39;proto&#39;,&#39;purrr&#39;,
-                   &#39;rbenchmark&#39;,&#39;RColorBrewer&#39;,&#39;Rcpp&#39;,&#39;reshape2&#39;,&#39;rJava&#39;,
-                   &#39;RSQLite&#39;, &#39;scales&#39;,&#39;spam&#39;,&#39;stringr&#39;,&#39;tidyr&#39;,&#39;xlsx&#39;,
+<pre><code class="r">install.packages(c(&#39;chron&#39;,&#39;colorspace&#39;,&#39;codetools&#39;, &#39;devtools&#39;,
+                   &#39;dichromat&#39;,&#39;digest&#39;,&#39;dplyr&#39;, &#39;fields&#39;,
+                   &#39;ggplot2&#39;,&#39;gridExtra&#39;,&#39;gtable&#39;,&#39;inline&#39;,
+                   &#39;iterators&#39;,&#39;knitr&#39;,&#39;labeling&#39;,&#39;lattice&#39;,
+                   &#39;mapproj&#39;,&#39;maps&#39;,&#39;munsell&#39;,&#39;proftools&#39;,&#39;proto&#39;,
+                   &#39;rbenchmark&#39;,&#39;RColorBrewer&#39;,&#39;reshape2&#39;,
+                   &#39;scales&#39;,&#39;spam&#39;,&#39;stringr&#39;,&#39;tidyr&#39;,&#39;xlsx&#39;,
                    &#39;xlsxjars&#39;,&#39;xtable&#39;))
 </code></pre>
 
@@ -454,13 +454,13 @@ ls()
 <pre><code class="r">ls(&#39;package:stats&#39;)[1:20]
 </code></pre>
 
-<pre><code>##  [1] &quot;acf&quot;                  &quot;acf2AR&quot;               &quot;add1&quot;                
-##  [4] &quot;addmargins&quot;           &quot;add.scope&quot;            &quot;aggregate&quot;           
+<pre><code>##  [1] &quot;acf&quot;                  &quot;acf2AR&quot;               &quot;add.scope&quot;           
+##  [4] &quot;add1&quot;                 &quot;addmargins&quot;           &quot;aggregate&quot;           
 ##  [7] &quot;aggregate.data.frame&quot; &quot;aggregate.ts&quot;         &quot;AIC&quot;                 
 ## [10] &quot;alias&quot;                &quot;anova&quot;                &quot;ansari.test&quot;         
 ## [13] &quot;aov&quot;                  &quot;approx&quot;               &quot;approxfun&quot;           
-## [16] &quot;ar&quot;                   &quot;ar.burg&quot;              &quot;arima&quot;               
-## [19] &quot;arima0&quot;               &quot;arima0.diag&quot;
+## [16] &quot;ar&quot;                   &quot;ar.burg&quot;              &quot;ar.mle&quot;              
+## [19] &quot;ar.ols&quot;               &quot;ar.yw&quot;
 </code></pre>
 
 <pre><code class="r">lm &lt;- function(i) {
@@ -476,7 +476,7 @@ lm(7)
 </code></pre>
 
 <pre><code>## gap$lifeExp ~ gap$gdpPercap
-## &lt;environment: 0x36cbb00&gt;
+## &lt;environment: 0x5569899c5ba0&gt;
 </code></pre>
 
 <pre><code class="r">stats::lm(gap$lifeExp ~ gap$gdpPercap)
@@ -534,21 +534,27 @@ ls data
 
 <pre><code class="r">getwd()  # what directory will R look in?
 # Linux/Mac specific
-setwd(&#39;~/Desktop/r-bootcamp-winter-2019&#39;) # change the working directory
+setwd(&#39;~/Desktop/r-bridge-2019&#39;) # change the working directory
 setwd(&#39;/Users/paciorek/Desktop&#39;) # absolute path
 getwd()
-setwd(&#39;r-bootcamp-winter-2019/modules&#39;) # relative path
+setwd(&#39;r-R part of the Bridge-winter-2019/modules&#39;) # relative path
 setwd(&#39;../tmp&#39;) # relative path, up and back down the tree
 
 # Windows - use either \\ or / to indicate directories
-# setwd(&#39;C:\\Users\\Your_username\\Desktop\\r-bootcamp-winter-2019&#39;)
-# setwd(&#39;..\\r-bootcamp-winter-2019&#39;)
+# setwd(&#39;C:\\Users\\Your_username\\Desktop\\r-bridge-2019&#39;)
+# setwd(&#39;..\\r-R part of the Bridge-winter-2019&#39;)
 
 # platform-agnostic
-setwd(file.path(&#39;~&#39;, &#39;Desktop&#39;, &#39;r-bootcamp-winter-2019&#39;, &#39;modules&#39;)) # change the working directory
-setwd(file.path(&#39;/&#39;, &#39;Users&#39;, &#39;paciorek&#39;, &#39;Desktop&#39;, &#39;r-bootcamp-winter-2019&#39;, &#39;modules&#39;)) # absolute path
+
+# change the working directory
+setwd(file.path(&#39;~&#39;, &#39;Desktop&#39;, &#39;r-bridge-2019&#39;, &#39;modules&#39;))
+
+# absolute path
+setwd(file.path(&#39;/&#39;, &#39;Users&#39;, &#39;paciorek&#39;, &#39;Desktop&#39;, &#39;r-bridge-2019&#39;, &#39;modules&#39;)) 
 getwd()
-setwd(file.path(&#39;..&#39;, &#39;data&#39;)) # relative path
+
+# relative path
+setwd(file.path(&#39;..&#39;, &#39;data&#39;)) 
 </code></pre>
 
 <p>Many errors and much confusion result from you and R not being on the same page in terms of where in the directory structure you are.</p>
@@ -635,8 +641,8 @@ dev.off()
 print(xtable(table(gap$year, gap$continent)), type = &quot;html&quot;)
 </code></pre>
 
-<pre><code>## &lt;!-- html table generated in R 3.4.3 by xtable 1.8-2 package --&gt;
-## &lt;!-- Mon Jan 14 17:24:52 2019 --&gt;
+<pre><code>## &lt;!-- html table generated in R 3.5.1 by xtable 1.8-3 package --&gt;
+## &lt;!-- Tue Aug  6 16:27:21 2019 --&gt;
 ## &lt;table border=1&gt;
 ## &lt;tr&gt; &lt;th&gt;  &lt;/th&gt; &lt;th&gt; Africa &lt;/th&gt; &lt;th&gt; Americas &lt;/th&gt; &lt;th&gt; Asia &lt;/th&gt; &lt;th&gt; Europe &lt;/th&gt; &lt;th&gt; Oceania &lt;/th&gt;  &lt;/tr&gt;
 ##   &lt;tr&gt; &lt;td align=&quot;right&quot;&gt; 1952 &lt;/td&gt; &lt;td align=&quot;right&quot;&gt;  52 &lt;/td&gt; &lt;td align=&quot;right&quot;&gt;  25 &lt;/td&gt; &lt;td align=&quot;right&quot;&gt;  33 &lt;/td&gt; &lt;td align=&quot;right&quot;&gt;  30 &lt;/td&gt; &lt;td align=&quot;right&quot;&gt;   2 &lt;/td&gt; &lt;/tr&gt;
@@ -655,55 +661,6 @@ print(xtable(table(gap$year, gap$continent)), type = &quot;html&quot;)
 </code></pre>
 
 <p>Recall our discussion of the <code>summary()</code> function used on either a vector or a regression object. What do you think is going on with call to <code>print()</code> above? </p>
-
-<h1>Version control</h1>
-
-<h3>Overview</h3>
-
-<p>At a basic level, a simple principle is to have version numbers for all your work: code, datasets, manuscripts. Whenever you make a change to a dataset, increment the version number. For code and manuscripts, increment when you make substantial changes or have obvious breakpoints in your workflow. </p>
-
-<p>However, this is a hassle to do manually. Instead of manually trying to keep track of what changes you&#39;ve made to code, data, documents, you use software to help you manage the process. This has several benefits:</p>
-
-<ul>
-<li>easily allowing you to go back to earlier versions</li>
-<li>allowing you to have multiple versions you can switch between</li>
-<li>allowing you to share work easily without worrying about conflicts</li>
-<li>providing built-in backup</li>
-</ul>
-
-<h3>Git and Github</h3>
-
-<p>Git is a popular tool for version control. Git is based around the notion of a repository, which is basically a version-controlled project directory. Many people use it with the Github or Bitbucket online hosting services for repositories.</p>
-
-<p>In the introductory material, we&#39;ve already seen how to get a copy of a Github repository on your local machine. </p>
-
-<p>As you&#39;re gathering by now, I&#39;ve used Git and Github to manage all the content for this workshop.</p>
-
-<h3>Making changes to a repository</h3>
-
-<p>We&#39;ll go through a short example of making changes to the r-bootcamp-winter-2019 repository. In this case you don&#39;t have permission to make changes so you&#39;ll just have to follow along as I do it. However, you could start your own repository and then you&#39;d be able to do similar things.</p>
-
-<p>Note that there are <a href="https://git-scm.com/downloads/guis">graphical interfaces to Git</a> that you might want to check out, but here I&#39;m just going to do it from the command line on my Mac.</p>
-
-<p>The basic notion we need is a <em>commit</em>. As we make changes to our files, we want to commit those changes to the repository regularly. A <em>commit</em> is a set of changes recorded with Git. We will often then <em>push</em> those changes to a remote copy of the repository, such as on Github.</p>
-
-<p>Here&#39;s a basic workflow:</p>
-
-<ol>
-<li>Add a file to, or make changes to a file in, a repository</li>
-<li>Commit the changes</li>
-<li>Push the changes to the remote version of the repository</li>
-</ol>
-
-<p>Here&#39;s how this would look from the command line (this won&#39;t look right in the slides version of the HTML):</p>
-
-<pre><code class="bash">git add myfile
-# make changes to mycode.R
-git commit -am&#39;added myfile and fixed bug in mycode.R&#39;
-git push
-</code></pre>
-
-<p>The changes are then available to anyone to <em>pull</em> from the remote repository, a using <code>git pull</code> or graphical interfaces, such as using RStudio&#39;s tools to pull the changes to your machine, discussed in the Github slide in module 0.</p>
 
 <h1>Getting R help online</h1>
 
