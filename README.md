@@ -1,8 +1,6 @@
 # r-bridge-2019
 Materials for the R portion of the Statistics Department 2019 Summer Bridge Program. Scroll down to see instructions for how to get the materials and install software.
 
-UNDER CONSTRUCTION - the information here is mostly accurate but does not yet link to the html of the R modules.
-
 Materials for learning R for the August 2019 Statistics Summer Bridge program at UC Berkeley. See below (under the listing of files) for information about the R materials, including logistics, how to get the course content, and how to install the software you need on your laptop.
 
 ## Description
@@ -50,8 +48,3 @@ Alternatively, IF INSTALLING ON YOUR LAPTOP FAILS, the following is an alternati
 
 Note that our ability to troubleshoot R or RStudio installed directly on your machine is limited (particularly in Windows). We'll try to help, but if we run into roadblocks, we'll direct you to the browser option.
 
-## Course Discussion and Questions
-
-In general, please use the Google group discussion board for questions during the bootcamp or if you have software installation problems or logistical questions before the bootcamp. The discussion board can be accessed [through your browser](https://groups.google.com/a/lists.berkeley.edu/d/forum/r-bridge-2019) or by email to r-bridge-2019@lists.berkeley.edu.
-
-If you need to contact us directly with an administrative question you can email r-bootcamp@lists.berkeley.edu.
