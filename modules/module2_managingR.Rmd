@@ -199,7 +199,7 @@ getwd()  # what directory will R look in?
 setwd('~/Desktop/r-bridge-2019') # change the working directory
 setwd('/Users/paciorek/Desktop') # absolute path
 getwd()
-setwd('r-R part of the Bridge-winter-2019/modules') # relative path
+setwd('r-bridge-2019/modules') # relative path
 setwd('../tmp') # relative path, up and back down the tree
 
 # Windows - use either \\ or / to indicate directories

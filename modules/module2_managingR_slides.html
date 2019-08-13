@@ -208,7 +208,7 @@ z &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a 
 <pre><code>## [1] 7</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>(gap<span class="op">$</span>lifeExp <span class="op">~</span><span class="st"> </span>gap<span class="op">$</span>gdpPercap)</code></pre></div>
 <pre><code>## gap$lifeExp ~ gap$gdpPercap
-## &lt;environment: 0x55698a247f00&gt;</code></pre>
+## &lt;environment: 0x55d188b3ff00&gt;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stats<span class="op">::</span><span class="kw">lm</span>(gap<span class="op">$</span>lifeExp <span class="op">~</span><span class="st"> </span>gap<span class="op">$</span>gdpPercap)</code></pre></div>
 <pre><code>## 
 ## Call:
@@ -250,7 +250,7 @@ z &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a 
 <span class="kw">setwd</span>(<span class="st">'~/Desktop/r-bridge-2019'</span>) <span class="co"># change the working directory</span>
 <span class="kw">setwd</span>(<span class="st">'/Users/paciorek/Desktop'</span>) <span class="co"># absolute path</span>
 <span class="kw">getwd</span>()
-<span class="kw">setwd</span>(<span class="st">'r-R part of the Bridge-winter-2019/modules'</span>) <span class="co"># relative path</span>
+<span class="kw">setwd</span>(<span class="st">'r-bridge-2019/modules'</span>) <span class="co"># relative path</span>
 <span class="kw">setwd</span>(<span class="st">'../tmp'</span>) <span class="co"># relative path, up and back down the tree</span>
 
 <span class="co"># Windows - use either \\ or / to indicate directories</span>
@@ -331,7 +331,7 @@ x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(xtable)
 <span class="kw">print</span>(<span class="kw">xtable</span>(<span class="kw">table</span>(gap<span class="op">$</span>year, gap<span class="op">$</span>continent)), <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>)</code></pre></div>
 <pre><code>## &lt;!-- html table generated in R 3.5.1 by xtable 1.8-3 package --&gt;
-## &lt;!-- Tue Aug  6 16:27:20 2019 --&gt;
+## &lt;!-- Tue Aug 13 13:40:10 2019 --&gt;
 ## &lt;table border=1&gt;
 ## &lt;tr&gt; &lt;th&gt;  &lt;/th&gt; &lt;th&gt; Africa &lt;/th&gt; &lt;th&gt; Americas &lt;/th&gt; &lt;th&gt; Asia &lt;/th&gt; &lt;th&gt; Europe &lt;/th&gt; &lt;th&gt; Oceania &lt;/th&gt;  &lt;/tr&gt;
 ##   &lt;tr&gt; &lt;td align=&quot;right&quot;&gt; 1952 &lt;/td&gt; &lt;td align=&quot;right&quot;&gt;  52 &lt;/td&gt; &lt;td align=&quot;right&quot;&gt;  25 &lt;/td&gt; &lt;td align=&quot;right&quot;&gt;  33 &lt;/td&gt; &lt;td align=&quot;right&quot;&gt;  30 &lt;/td&gt; &lt;td align=&quot;right&quot;&gt;   2 &lt;/td&gt; &lt;/tr&gt;

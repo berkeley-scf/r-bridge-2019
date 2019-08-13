@@ -3,6 +3,7 @@
 % Chris Paciorek (built off of material by Kellie Ottoboni and Chris Krogslund)
 
 ```{r chunksetup, include=FALSE}
+knitr::opts_chunk$set(fig.cap = " ", warning=FALSE, fig.show = "hold")
 # include any code here you don't want to show up in the document,
 # e.g. package and dataset loading
 library(dplyr)
@@ -153,6 +154,8 @@ The basic idea is that the visualization of all data requires four items:
 
 `ggplot2` allows the user to manipulate all four of these items.
 
+### Some Examples
+
 ```{r, warning = FALSE, message = FALSE, fig.cap = ""}
 # Scatterplot
 ggplot(gapChina, aes(x = year, y = lifeExp)) + geom_point() +
@@ -210,6 +213,13 @@ legend("right", legend = c("China", "Turkey", "Italy"),
                 fill = c("red", "green", "blue"))
 ```
 
+Of course, as mentioned above, you can always filter your tidy data to replicate this plot with `ggplot2`... 
+```{r}
+gap %>%
+  filter(country %in% c("China", "Turkey", "Italy")) %>%
+  ggplot(aes(x = year, y = lifeExp)) +
+  geom_line(aes(color = country))
+```
 
 # Pros/cons of `ggplot2`
 

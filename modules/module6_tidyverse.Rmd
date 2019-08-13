@@ -1,6 +1,6 @@
 % R Bootcamp, Module 6: Data manipulation with the `tidyverse`
 % August 2019, UC Berkeley
-% Chris Paciorek (based on materials developed by Kellie Ottoboni, Rochelle Terman, Nima Hejazi, and Chris Krogslund)
+% Chris Paciorek (based on materials developed by Dana Seidel, Kellie Ottoboni, Rochelle Terman, Nima Hejazi, and Chris Krogslund)
 
 
 ```{r chunksetup, include=FALSE}
@@ -100,19 +100,68 @@ But, as we will see, `dplyr` makes for much more readable, efficient code becaus
 
 ![](img/magrittr_hex.png)
 
-Above, we used what's called "normal" grammar, but the strengths of `dplyr` lie in combining several functions using *pipes*.
-Pipes take the input on the left side of the `%>%` symbol and pass it in as the first argument to the function on the right side.
-Since the pipe grammar is unlike anything we've seen in R before, let's repeat what we've done above using pipes.
+Above, we used what's called "normal" grammar, but the strengths of `dplyr` lie 
+in combining several functions using *pipes*.
+
+In typical base R code, a simple operation might be written like: 
+
+```{r eval=F}
+# NOT run
+cupcakes <- bake(pour(mix(ingredients)))
+```
+
+A computer has no trouble understanding this and your cupcakes will be made just
+fine but a person has to read right to left to understand the order of operations 
+- the opposite of how most western languages are read - making it harder to 
+understand what is being done! 
+
+To be more readable without pipes, we might break up this code into intermediate objects... 
+
+```{r, eval = F}
+## NOT run
+batter <- mix(ingredients)
+muffin_tin <- pour(batter)
+cupcakes <- bake(muffin_tin)
+```
+
+but this can clutter our environment with a lot of variables that aren't very 
+useful to us, and often are named very similar things (e.g. step, step1, step2...)
+which can lead to confusion and those hard-to-track-down bugs. 
+
+### Enter the pipe... 
+
+The *pipe* makes it easier to read code because it lays out the operations left to right 
+so each line can be read like a line of a recipe for the perfect data frame! 
+
+Pipes take the input on the left side of the `%>%` symbol and pass it in as the 
+first argument to the function on the right side.
+
+With pipes, our cupcake example might be written like:
+
+```{r, eval=F}
+## NOT run
+cupcakes <- ingredients %>% 
+  mix() %>% 
+  pour() %>% 
+  bake()
+```
+
+**Pro Tip**: In RStudio the hotkey for the pipe is Ctrl + Shift + M. 
+
+# `select` & Pipe (`%>%`)
+Since the pipe grammar is unlike anything we've seen in R before, let's repeat what 
+we did above with the gapminder dataset using pipes:
 
 ```{r}
 year_country_gdp <- gap %>% select(year, country, gdpPercap)
 ```
 
-First we summon the gapminder dataframe and pass it on to the next step using the pipe symbol `%>%`
-The second steps is the `select()` function.
+First, we summon the gapminder data frame and pass it on to the next step using the pipe symbol `%>%`.
+The second step is the `select()` function.
 In this case we don't specify which data object we use in the call to `select()` since we've piped it in.
 
 **Fun Fact**: There is a good chance you have encountered pipes before in the shell. In R, a pipe symbol is `%>%` while in the shell it is `|.` But the concept is the same!
+
 
 # `dplyr::filter`
 
