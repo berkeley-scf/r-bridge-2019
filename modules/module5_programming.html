@@ -363,7 +363,7 @@ implicit.</p>
 val
 </code></pre>
 
-<pre><code>## [1] -0.5093038
+<pre><code>## [1] -0.5821997
 </code></pre>
 
 <pre><code class="r">if (val &lt; 0) {
@@ -382,7 +382,7 @@ val
 val
 </code></pre>
 
-<pre><code>## [1] 0.5754709
+<pre><code>## [1] 0.7706145
 </code></pre>
 
 <pre><code class="r">if (val &lt; -1) {
@@ -720,15 +720,15 @@ talk</a></p></li>
 x[ , 2]
 </code></pre>
 
-<pre><code>##  [1] 0.8252896 0.6837874 0.3071838 0.9152544 0.4170740 0.4021047 0.8497228
-##  [8] 0.2184211 0.2939513 0.8684355
+<pre><code>##  [1] 0.4655502 0.5382969 0.4191127 0.7053151 0.8329983 0.6634462 0.1070679
+##  [8] 0.7140303 0.9753599 0.3187254
 </code></pre>
 
 <pre><code class="r">&#39;[&#39;(x , , 2)
 </code></pre>
 
-<pre><code>##  [1] 0.8252896 0.6837874 0.3071838 0.9152544 0.4170740 0.4021047 0.8497228
-##  [8] 0.2184211 0.2939513 0.8684355
+<pre><code>##  [1] 0.4655502 0.5382969 0.4191127 0.7053151 0.8329983 0.6634462 0.1070679
+##  [8] 0.7140303 0.9753599 0.3187254
 </code></pre>
 
 <p>Also yes!</p>
@@ -786,8 +786,8 @@ functions. Use <code>invisible()</code> in your function from just above or in t
 <p>5) Consider the code where we used <code>sample()</code>.  Initialize a storage vector of 500 zeroes. Set up a bootstrap using a for loop, with 500 bootstrap datasets. Here are the steps within each iteration:</p>
 
 <ul>
-<li>resample with replacement a new dataset of the same size as the actual dataset</li>
-<li>assign the value of the mean of the delay for the bootstrap dataset into the storage vector</li>
+<li>resample with replacement a new dataset of the same size as the actual <code>gap</code> dataset</li>
+<li>assign the value of the mean of the life expectancy for the bootstrap dataset into the storage vector</li>
 <li>repeat</li>
 </ul>
 

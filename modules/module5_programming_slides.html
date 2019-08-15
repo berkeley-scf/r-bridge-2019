@@ -182,7 +182,7 @@ out[[<span class="st">'2007'</span>]]</code></pre></div>
 <p>Here's a simple example to illustrate the syntax. Note that the <em>then</em> is implicit.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">val &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>)
 val</code></pre></div>
-<pre><code>## [1] -0.4229923</code></pre>
+<pre><code>## [1] -0.003965976</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (val <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) {
   <span class="kw">print</span>(<span class="st">&quot;val is negative&quot;</span>)
 } <span class="cf">else</span> {
@@ -192,7 +192,7 @@ val</code></pre></div>
 <p>We can chain together <code>if</code> statements as follows.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">val &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>)
 val</code></pre></div>
-<pre><code>## [1] 0.730932</code></pre>
+<pre><code>## [1] -1.446826</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (val <span class="op">&lt;</span><span class="st"> </span><span class="dv">-1</span>) {
   <span class="kw">print</span>(<span class="st">&quot;val is more than one standard deviation below the mean.&quot;</span>)
 } <span class="cf">else</span> <span class="cf">if</span> (<span class="kw">abs</span>(val) <span class="op">&lt;=</span><span class="st"> </span><span class="dv">1</span>) {
@@ -200,10 +200,10 @@ val</code></pre></div>
 } <span class="cf">else</span> {
   <span class="kw">print</span>(<span class="st">&quot;val is more than one standard deviation above the mean.&quot;</span>)
 }</code></pre></div>
-<pre><code>## [1] &quot;val is within one standard deviation of the mean.&quot;</code></pre>
+<pre><code>## [1] &quot;val is more than one standard deviation below the mean.&quot;</code></pre>
 <p>In general, the <code>{</code> brackets are only needed if you have multiple R expressions, but R will complain when an <code>else</code> starts a line of code, so generally using the <code>{</code> is good practice. That said, this <em>works just fine</em>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (val <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) <span class="kw">print</span>(<span class="st">&quot;val is negative&quot;</span>) <span class="cf">else</span> <span class="kw">print</span>(<span class="st">&quot;val is positive&quot;</span>)</code></pre></div>
-<pre><code>## [1] &quot;val is positive&quot;</code></pre>
+<pre><code>## [1] &quot;val is negative&quot;</code></pre>
 </div>
 <div id="the-condition-in-an-if-statement" class="slide section level1">
 <h1>The condition in an if statement</h1>
@@ -384,11 +384,11 @@ f &lt;-<span class="st"> </span><span class="cf">function</span>(y) {
 <p>And what about indexing?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">runif</span>(<span class="dv">100</span>), <span class="dv">10</span>)
 x[ , <span class="dv">2</span>]</code></pre></div>
-<pre><code>##  [1] 0.404902511 0.219461948 0.151185257 0.006507286 0.494885783
-##  [6] 0.258705023 0.779639218 0.450265147 0.641890714 0.748723700</code></pre>
+<pre><code>##  [1] 0.45693857 0.12290221 0.38632487 0.06402552 0.74869698 0.47714476
+##  [7] 0.31106256 0.91367998 0.97745154 0.23342963</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">'['</span>(x , , <span class="dv">2</span>)</code></pre></div>
-<pre><code>##  [1] 0.404902511 0.219461948 0.151185257 0.006507286 0.494885783
-##  [6] 0.258705023 0.779639218 0.450265147 0.641890714 0.748723700</code></pre>
+<pre><code>##  [1] 0.45693857 0.12290221 0.38632487 0.06402552 0.74869698 0.47714476
+##  [7] 0.31106256 0.91367998 0.97745154 0.23342963</code></pre>
 <p>Also yes!</p>
 <p>This holds more generally - one can investigate and see the same thing in terms of a <code>for</code> loop.</p>
 <h3 id="what-does-the-1st-principle-mean">What does the 1st principle mean?</h3>
@@ -416,8 +416,8 @@ x[ , <span class="dv">2</span>]</code></pre></div>
 <li><p>Consider the code where we used <code>sample()</code>. Initialize a storage vector of 500 zeroes. Set up a bootstrap using a for loop, with 500 bootstrap datasets. Here are the steps within each iteration:</p></li>
 </ol>
 <ul>
-<li>resample with replacement a new dataset of the same size as the actual dataset</li>
-<li>assign the value of the mean of the delay for the bootstrap dataset into the storage vector</li>
+<li>resample with replacement a new dataset of the same size as the actual <code>gap</code> dataset</li>
+<li>assign the value of the mean of the life expectancy for the bootstrap dataset into the storage vector</li>
 <li>repeat</li>
 </ul>
 <p>Now plot a histogram of the 500 values - this is an estimate of the sampling distribution of the sample mean.</p>
